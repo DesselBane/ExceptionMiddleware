@@ -1,6 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+
+    <PackageId>ExceptionMiddleware</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Dark Phantom</Authors>
+    <Company>DarkSolutions</Company>
+    <Title>Exception Middleware</Title>
+    <Description>A Package with an ASP Core Middleware component for handling HTTP ResponseCodes and Exceptions.</Description>
+    <PackageLicenseUrl>https://github.com/DesselBane/ExceptionMiddleware/blob/master/Licence.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/DesselBane/ExceptionMiddleware</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DesselBane/ExceptionMiddleware</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>WebApi;AspNet;SPA</PackageTags>
+    <IncludeSource>True</IncludeSource>
+    
+    
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.1" />
