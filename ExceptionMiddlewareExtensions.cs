@@ -6,7 +6,7 @@ namespace ExceptionMiddleware
     {
         public static IApplicationBuilder UseExceptionMiddleware(this IApplicationBuilder app)
         {
-            app.UseMiddleware<global::ExceptionMiddleware.ExceptionMiddleware>();
+            app.UseMiddleware<ExceptionMiddleware>();
 
             return app;
         }

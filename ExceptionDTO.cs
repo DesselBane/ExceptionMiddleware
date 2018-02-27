@@ -20,13 +20,11 @@ namespace ExceptionMiddleware
 
         public ExceptionDTO(InvalidRestOperationException ex)
         {
-            ErrorCode = ex.CustomErrorCode;
+            ErrorCode   = ex.CustomErrorCode;
             ErrorReason = ex.Message;
         }
 
-        public ExceptionDTO()
-        {
-        }
+        public ExceptionDTO() { }
 
         #endregion
     }

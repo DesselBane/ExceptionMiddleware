@@ -14,14 +14,10 @@ namespace ExceptionMiddleware
         #region Constructors
 
         public NotFoundException(int id, string typeName, Guid customError, string additionalMessage = "", Exception innerException = null)
-            : this(id.ToString(), typeName, customError, additionalMessage, innerException)
-        {
-        }
+            : this(id.ToString(), typeName, customError, additionalMessage, innerException) { }
 
         public NotFoundException(string id, string typeName, Guid customError, string additionalMessage = "", Exception innerException = null)
-            : base($"No {typeName} with Id: {id} was found." + additionalMessage, customError, innerException)
-        {
-        }
+            : base($"No {typeName} with Id: {id} was found." + additionalMessage, customError, innerException) { }
 
         #endregion
     }
