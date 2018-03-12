@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>ExceptionMiddleware</PackageId>
-    <Version>1.0.1</Version>
+      <Version>1.0.2</Version>
     <Authors>Dark Phantom</Authors>
     <Company>DarkSolutions</Company>
     <Title>Exception Middleware</Title>
