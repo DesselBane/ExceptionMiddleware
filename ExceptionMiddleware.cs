@@ -29,7 +29,13 @@ namespace ExceptionMiddleware
             } catch (InvalidRestOperationException invalidRestOperationException)
             {
                 context.Response.StatusCode = invalidRestOperationException.ResponseCode;
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new ExceptionDTO(invalidRestOperationException)));
+                await
+                    context.Response
+                           .WriteAsync(JsonConvert.SerializeObject(new ExceptionDTO(invalidRestOperationException)));
+            } catch
+            {
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync("Ups... Something bad happened :(");
             }
         }
     }
