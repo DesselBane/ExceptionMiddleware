@@ -9,7 +9,7 @@ namespace ExceptionMiddleware
         #region Properties
 
         [DataMember]
-        public Guid ErrorCode { get; set; }
+        public string ErrorCode { get; set; }
 
         [DataMember]
         public string ErrorReason { get; set; }

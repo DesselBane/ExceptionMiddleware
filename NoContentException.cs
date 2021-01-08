@@ -7,7 +7,7 @@ namespace ExceptionMiddleware
     {
         #region Constructors
 
-        public NoContentException(string message, Guid customErrorCode, Exception innerException = null)
+        public NoContentException(string message, string customErrorCode, Exception innerException = null)
             : base(message, customErrorCode, innerException) { }
 
         #endregion

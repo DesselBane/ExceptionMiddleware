@@ -7,7 +7,7 @@ namespace ExceptionMiddleware
     {
         #region Constructors
 
-        public ConflictException(string message, Guid customErrorCode, Exception innerException = null)
+        public ConflictException(string message, string customErrorCode, Exception innerException = null)
             : base(message, customErrorCode, innerException) { }
 
         #endregion

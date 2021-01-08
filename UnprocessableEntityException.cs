@@ -6,7 +6,7 @@ namespace ExceptionMiddleware
     {
         #region Constructors
 
-        public UnprocessableEntityException(string message, Guid customErrorCode, Exception innerException = null)
+        public UnprocessableEntityException(string message, string customErrorCode, Exception innerException = null)
             : base(message, customErrorCode, innerException) { }
 
         #endregion
