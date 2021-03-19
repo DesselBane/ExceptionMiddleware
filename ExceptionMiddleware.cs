@@ -12,7 +12,8 @@ namespace ExceptionMiddleware
     {
         #region Constructors
 
-        public ExceptionMiddleware(RequestDelegate next, IHostingEnvironment environment, ILogger logger)
+        public ExceptionMiddleware(RequestDelegate next, IHostingEnvironment environment,
+            ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
             _environment = environment;
@@ -69,7 +70,7 @@ namespace ExceptionMiddleware
 
         private readonly RequestDelegate _next;
         private readonly IHostingEnvironment _environment;
-        private readonly ILogger _logger;
+        private readonly ILogger<ExceptionMiddleware> _logger;
 
         #endregion
     }
