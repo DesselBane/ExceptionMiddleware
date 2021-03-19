@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Net;
 
-namespace ExceptionMiddleware
+namespace ExceptionMiddleware.Errors
 {
     public class UnauthorizedException : InvalidRestOperationException
     {
         #region Constructors
 
         public UnauthorizedException(string message, string customErrorCode, Exception innerException = null)
-            : base(message, customErrorCode, innerException) { }
+            : base(message, customErrorCode, innerException)
+        {
+        }
 
         #endregion
 

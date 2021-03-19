@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ExceptionMiddleware.Errors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace ExceptionMiddleware
@@ -10,10 +12,11 @@ namespace ExceptionMiddleware
     {
         #region Constructors
 
-        public ExceptionMiddleware(RequestDelegate next, IHostingEnvironment environment)
+        public ExceptionMiddleware(RequestDelegate next, IHostingEnvironment environment, ILogger logger)
         {
-            _next        = next;
+            _next = next;
             _environment = environment;
+            _logger = logger;
         }
 
         #endregion
@@ -23,14 +26,21 @@ namespace ExceptionMiddleware
             try
             {
                 await _next(context);
-            } catch (InvalidRestOperationException invalidRestOperationException)
+            }
+            catch (InvalidRestOperationException invalidRestOperationException)
             {
+                _logger.Log(LogLevel.Information, invalidRestOperationException,
+                    "Exception Middleware caught an error");
+
                 context.Response.StatusCode = invalidRestOperationException.ResponseCode;
                 await
                     context.Response
-                           .WriteAsync(JsonConvert.SerializeObject(new ExceptionDTO(invalidRestOperationException)));
-            } catch (Exception exception)
+                        .WriteAsync(JsonConvert.SerializeObject(new ExceptionDTO(invalidRestOperationException)));
+            }
+            catch (Exception exception)
             {
+                _logger.Log(LogLevel.Error, exception,
+                    "Exception Middleware caught an unhandled exception");
                 context.Response.StatusCode = 500;
 
                 if (_environment.IsDevelopment())
@@ -41,13 +51,14 @@ namespace ExceptionMiddleware
                     {
                         await context.Response.WriteAsync(ex.Message);
                         await context.Response
-                                     .WriteAsync("\n##########################################################################");
+                            .WriteAsync("\n##########################################################################");
                         await context.Response.WriteAsync(ex.StackTrace);
                         await context.Response
-                                     .WriteAsync("\n--------------------------------------------------------------------------");
+                            .WriteAsync("\n--------------------------------------------------------------------------");
                         ex = ex.InnerException;
                     } while (ex != null);
-                } else
+                }
+                else
                 {
                     await context.Response.WriteAsync("Ups... Something bad happened :(");
                 }
@@ -56,8 +67,9 @@ namespace ExceptionMiddleware
 
         #region Vars
 
-        private readonly RequestDelegate     _next;
+        private readonly RequestDelegate _next;
         private readonly IHostingEnvironment _environment;
+        private readonly ILogger _logger;
 
         #endregion
     }

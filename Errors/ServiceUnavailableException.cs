@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 
-namespace ExceptionMiddleware
+namespace ExceptionMiddleware.Errors
 {
     public class ServiceUnavailableException : InvalidRestOperationException
     {

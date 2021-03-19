@@ -1,6 +1,6 @@
 using System;
 
-namespace ExceptionMiddleware
+namespace ExceptionMiddleware.Errors
 {
     public class BadRequestException : InvalidRestOperationException
     {

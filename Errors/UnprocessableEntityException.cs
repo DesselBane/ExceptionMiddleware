@@ -1,13 +1,15 @@
 ﻿using System;
 
-namespace ExceptionMiddleware
+namespace ExceptionMiddleware.Errors
 {
     public class UnprocessableEntityException : InvalidRestOperationException
     {
         #region Constructors
 
         public UnprocessableEntityException(string message, string customErrorCode, Exception innerException = null)
-            : base(message, customErrorCode, innerException) { }
+            : base(message, customErrorCode, innerException)
+        {
+        }
 
         #endregion
 

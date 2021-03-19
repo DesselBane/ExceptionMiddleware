@@ -1,5 +1,5 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+using ExceptionMiddleware.Errors;
 
 namespace ExceptionMiddleware
 {
@@ -8,11 +8,9 @@ namespace ExceptionMiddleware
     {
         #region Properties
 
-        [DataMember]
-        public string ErrorCode { get; set; }
+        [DataMember] public string ErrorCode { get; set; }
 
-        [DataMember]
-        public string ErrorReason { get; set; }
+        [DataMember] public string ErrorReason { get; set; }
 
         #endregion
 
@@ -20,11 +18,13 @@ namespace ExceptionMiddleware
 
         public ExceptionDTO(InvalidRestOperationException ex)
         {
-            ErrorCode   = ex.CustomErrorCode;
+            ErrorCode = ex.CustomErrorCode;
             ErrorReason = ex.Message;
         }
 
-        public ExceptionDTO() { }
+        public ExceptionDTO()
+        {
+        }
 
         #endregion
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExceptionMiddleware
+namespace ExceptionMiddleware.Errors
 {
     public abstract class InvalidRestOperationException : InvalidOperationException
     {
@@ -11,14 +11,13 @@ namespace ExceptionMiddleware
         {
             CustomErrorCode = customErrorCode;
         }
-        
 
         #endregion
 
         #region Properties
 
-        public abstract int  ResponseCode    { get; }
-        public          string CustomErrorCode { get; }
+        public abstract int ResponseCode { get; }
+        public string CustomErrorCode { get; }
 
         #endregion
     }

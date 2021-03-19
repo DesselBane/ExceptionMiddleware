@@ -13,7 +13,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>WebApi;AspNet;SPA</PackageTags>
     <IncludeSource>True</IncludeSource>
-    <PackageVersion>2.2.0</PackageVersion>
+    <PackageVersion>3.0.0</PackageVersion>
   </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>

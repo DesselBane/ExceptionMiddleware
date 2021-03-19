@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Net;
 
-namespace ExceptionMiddleware
+namespace ExceptionMiddleware.Errors
 {
     public class NoContentException : InvalidRestOperationException
     {
         #region Constructors
 
         public NoContentException(string message, string customErrorCode, Exception innerException = null)
-            : base(message, customErrorCode, innerException) { }
+            : base(message, customErrorCode, innerException)
+        {
+        }
 
         #endregion
 
