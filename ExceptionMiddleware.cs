@@ -44,7 +44,7 @@ namespace ExceptionMiddleware
                     "Exception Middleware caught an unhandled exception");
                 context.Response.StatusCode = 500;
 
-                if (_environment.IsDevelopment())
+                if (!_environment.IsProduction())
                 {
                     var ex = exception;
 
