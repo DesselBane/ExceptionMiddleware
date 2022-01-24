@@ -12,9 +12,11 @@ namespace ExceptionMiddleware
     {
         #region Constructors
 
-        public ExceptionMiddleware(RequestDelegate next, IHostingEnvironment environment,
+        public ExceptionMiddleware(JsonSerializerSettings jsonSerializerSettings, RequestDelegate next,
+            IHostingEnvironment environment,
             ILogger<ExceptionMiddleware> logger)
         {
+            _jsonSerializerSettings = jsonSerializerSettings;
             _next = next;
             _environment = environment;
             _logger = logger;
@@ -36,7 +38,8 @@ namespace ExceptionMiddleware
                 context.Response.StatusCode = invalidRestOperationException.ResponseCode;
                 await
                     context.Response
-                        .WriteAsync(JsonConvert.SerializeObject(new ExceptionDTO(invalidRestOperationException)));
+                        .WriteAsync(JsonConvert.SerializeObject(new ExceptionDTO(invalidRestOperationException),
+                            _jsonSerializerSettings));
             }
             catch (Exception exception)
             {
@@ -68,6 +71,7 @@ namespace ExceptionMiddleware
 
         #region Vars
 
+        private readonly JsonSerializerSettings _jsonSerializerSettings;
         private readonly RequestDelegate _next;
         private readonly IHostingEnvironment _environment;
         private readonly ILogger<ExceptionMiddleware> _logger;
